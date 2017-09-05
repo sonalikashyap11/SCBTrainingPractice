@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+<script>
+
+function execute()
+{
+	removeall();
+	var keys = document.getElementById("sele").value;
+	document.getElementById("output").innerHTML=keys;
+	
+	if(keys=="1")//pan
+	{
+		//alert("Enter Pan Card Details");
+		var Obj = document.getElementById("testNo");
+        if (Obj.value!= "") {
+            ObjVal = Obj.value;
+            var Pat = /^([a-zA-Z]{5})(\d{4})([a-zA-Z]{1})$/;
+           
+             if (ObjVal.search(Pat) == -1) {
+                alert("Invalid Pan No");
+                Obj.focus();
+                return false;
+            }
+          else
+            {
+        	  alert("Correct Pan No");
+        	  return true;
+             
+              }
+        }
+	}
+	
+	if(keys=="2")//passport
+	{
+
+//		var regsaid = /^[A-PR-WY][1-9]\d\s?\d{4}[1-9]$/;
+
+		//alert("Enter Passport Details");
+		var Obj = document.getElementById("testNo");
+        if (Obj.value!= "") {
+            ObjVal = Obj.value;
+            var Pat = /^[A-PR-WY][1-9]\d\s?\d{4}[1-9]$/;
+                       
+             if (ObjVal.search(Pat) == -1) {
+                alert("Invalid Passport No");
+                Obj.focus();
+                return false;
+            }
+          else
+            {
+        	  alert("Correct Passport No");
+        	  return true;
+             
+              }
+        }
+
+	}
+	
+	if(keys=="3")//aadhar
+	{
+//		/^\d{4}\s\d{4}\s\d{4}$/g
+
+	//alert("Enter Aadhar Card Details");
+		var Obj = document.getElementById("testNo");
+        if (Obj.value!= "") {
+            ObjVal = Obj.value;
+            var Pat = /^\d{12}$/g;
+             if (ObjVal.search(Pat) == -1) {
+                alert("Invalid Aadhar Card No");
+                Obj.focus();
+                return false;
+            }
+          else
+            {
+        	  alert("Correct Aadhar Card No");
+        	  return true;
+             
+              }
+        }
+	}
+	
+}
+
+function removeall()
+{
+	var ct=document.dummy.sele2.length;
+	for(i=ct;i>=0;i--){
+		document.dummy.sele2.options[i]=null;
+	}
+}
+
+</script>
+</head>
+<body>
+<form name="dummy">
+		<label >Personal Document</label>
+        <select id="sele" onchange="removeall()" required="required">
+			<option value="" ></option>
+			<option value="1" >PAN Card</option>
+			<option value="2" >Passport</option>
+			<option value="3" >Aadhar Card</option>
+		</select><br>
+		<label >Document ID No</label>
+        <input name="sele2" type="text" class="long" name="name"  id="testNo" placeholder="Doc ID" required="required"/><br>
+<br>
+				<p><button class="w3-button w3-block w3-green" onclick="execute()" value="Dedupe" type="submit" style="width:120px;text-align:center;">Dedupe &raquo;</button></p>
+			<br><br>
+
+</form>
+<div id="output"></div>
+</body>
+</html>
